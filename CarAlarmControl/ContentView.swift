@@ -7,55 +7,72 @@
 
 import SwiftUI
 
-extension TabView {
-
-    func myTabViewStyle() -> some View {
-        self.background(LinearGradient(Color.darkStart, Color.darkEnd))              // Replace 'BackgroundImage' with your image name
-        // or   self.background(Image(systemName: "questionmark.square"))
-//            .frame(width: 200, height: 500, alignment: .top)   // Optional, but shows the background
-            .opacity(0.)                                      // Again optional, but shows the effect
-
-        // etc, with other View modifiers, choose the ones you need
-
-    }
-}
-
 struct ContentView: View {
 //    @State private var lock = true
-
+//    @StateObject
+    @StateObject var controller = CarAlarmController()
+    @State var tabSelection = 0
+    
 //    init() {
 //        UITabBar.appearance().backgroundColor = UIColor.blue
 //    }
 
     var body: some View {
-        ZStack {
-            LinearGradient(Color.darkStart, Color.darkEnd)
 
-            TabView {
+        TabView(selection : $tabSelection) {
                 ControlView()
-                    .tabItem {
-                        Image(systemName: "circle.grid.cross")
+                    .edgesIgnoringSafeArea(.all)
+                    .tag(0)
+
+
+            VStack {
+                HStack(alignment: .center, spacing: 8) {
+                    
+                    Image(systemName: "chevron.backward")
+
+                    Button {
+                        withAnimation {
+                            tabSelection -= 1
+                        }
+
+                    } label: {
+                        Text("Back")
+                            .multilineTextAlignment(.leading)
                     }
-                Text("Another Tab")
-                    .tabItem {
-                        Image(systemName: "gearshape")
-                    }
+
+                    Spacer()
+                }
+
+                SettingsView()
+
             }
-            .myTabViewStyle()
-            
+            .tag(1)
+
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .task {
+                if controller.needPhoneNumbers {
+                    withAnimation {
+                        tabSelection = 1
+                    }
+                }
+            }
+
 
         
-        }
+//        }
         //        .foregroundColor(.purple)
         //        .background(LinearGradient(Color.darkStart, Color.darkEnd))
 
-        .edgesIgnoringSafeArea(.all)
 
+            .edgesIgnoringSafeArea(.all)
+            .environmentObject(controller)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(CarAlarmController())
     }
 }

@@ -11,82 +11,91 @@ struct ControlView: View {
     let controller: RemoteController = CarAlarmController()
 
     var body: some View {
-//        ZStack {
-//            LinearGradient(Color.darkStart, Color.darkEnd)
+        ZStack {
+            LinearGradient(Color.darkStart, Color.darkEnd)
 
             VStack {
-                Spacer()
-
-                HStack {
+                if controller.canLock || controller.canUnlock {
                     Spacer()
 
-                    Button(action: {
-                        controller.perfom(command: .lock)
-                    }) {
-                        Image(systemName: "lock")
-                            .foregroundColor(.lightStart)
-                            .font(.system(size: 45))
+                    HStack {
+                        if controller.canLock {
+                            Spacer()
+
+                            Button(action: {
+                                controller.perfom(command: .lock)
+                            }) {
+                                Image(systemName: "lock")
+                                    .foregroundColor(.lightStart)
+                                    .font(.system(size: 45))
+                            }
+                            .buttonStyle(CircleButtonStyle())
+                        }
+
+                        Spacer()
+
+                        if controller.canUnlock {
+                            Button(action: {
+                                controller.perfom(command: .unlock)
+                            }) {
+                                Image(systemName: "lock.open")
+                                    .foregroundColor(.lightStart)
+                                    .font(.system(size: 45))
+                            }
+                            .buttonStyle(CircleButtonStyle())
+
+                            Spacer()
+                        }
                     }
-                    .buttonStyle(CircleButtonStyle())
-
-                    Spacer()
-
-                    Button(action: {
-                        controller.perfom(command: .unlock)
-                    }) {
-                        Image(systemName: "lock.open")
-                            .foregroundColor(.lightStart)
-                            .font(.system(size: 45))
-                    }
-                    .buttonStyle(CircleButtonStyle())
-
-                    Spacer()
                 }
-                .padding()
+//                .padding()
 
                 //                VStack {
                 Spacer()
 
-                Button(action: {
+                if controller.canStartEngine {
+                    Button(action: {
+                        controller.perfom(command: .engineStart)
+                    }) {
+                        Text("Start")
+                            .padding(20)
+                            .foregroundColor(.lightStart)
+                            .font(.system(size: 30))
+                    }
+                    .buttonStyle(CircleButtonStyle())
 
-                    controller.perfom(command: .engineStart)
-
-                }) {
-                    Text("Start")
-                        .padding(20)
-                        .foregroundColor(.lightStart)
-                        .font(.system(size: 30))
+                    Spacer()
                 }
-                .buttonStyle(CircleButtonStyle())
 
-                Spacer()
+                if controller.canStopEngine {
+                    Button(action: {
+                        controller.perfom(command: .engineStop)
+                    }) {
+                        Text("Stop")
+                            .padding(15)
+                            .foregroundColor(.redColor)
+                            .font(.system(size: 25))
+                    }
+                    .buttonStyle(CircleButtonStyle())
 
-                Button(action: {
-                    controller.perfom(command: .engineStop)
-                }) {
-                    Text("Stop")
-                        .padding(15)
-                        .foregroundColor(.redColor)
-                        .font(.system(size: 25))
+                    Spacer()
                 }
-                .buttonStyle(CircleButtonStyle())
 
-                Spacer()
+                if controller.canOpenGate {
+                    Button(action: {
+                        controller.perfom(command: .openGate)
+                    }) {
+                        Text("Open gate")
+//                                                .padding(15)
+                            .foregroundColor(.lightStart)
+                            .font(.system(size: 30))
+                    }
+                    .buttonStyle(CapsuleButtonStyle())
 
-                Button(action: {
-                    controller.perfom(command: .openGate)
-                }) {
-                    Text("Open gate")
-                    //                        .padding(15)
-                        .foregroundColor(.lightStart)
-                        .font(.system(size: 30))
+                    Spacer()
                 }
-                .buttonStyle(CapsuleButtonStyle())
-
-                Spacer()
-                //                }
             }
-//        }
+        }
     }
 }
 

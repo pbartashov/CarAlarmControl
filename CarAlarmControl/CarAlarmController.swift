@@ -9,32 +9,84 @@ import SwiftUI
 //import CallKit
 
 protocol RemoteController {
+//    var carAlarmPhoneNumber: String { get }
+//    var lockCommand: String { get }
+//    var unlockCommand: String { get }
+//    var engineStartCommand: String { get }
+//    var engineStopCommand: String { get }
+//
+//    var gatePhoneNumber: String { get }
+    var canLock: Bool { get }
+    var canUnlock: Bool { get }
+    var canStartEngine: Bool { get }
+    var canStopEngine: Bool { get }
+    var canOpenGate: Bool { get }
+
     func perfom(command: Command)
 }
 
-enum Command {
-    case lock
-    case unlock
-    case engineStart
-    case engineStop
-    case openGate
+enum Command: String {
+    case lock = "lock"
+    case unlock = "unlock"
+    case engineStart = "engineStart"
+    case engineStop = "engineStop"
+    case openGate = "openGate"
 }
 
 
 
 //final class CarAlarmController: NSObject, CXCallObserverDelegate {
-struct CarAlarmController: RemoteController {
+final class CarAlarmController: RemoteController, ObservableObject {
     @Environment(\.openURL) private var openURL
 
-    private var carAlarmPhoneNumber: String?
-    private var gatePhoneNumber: String?
 
-    private var lockUSSDCode: String?
-    private var unlockUSSDCode: String?
+    @AppStorage(Settings.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
+//        didSet {
+//            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
+//        }
+//    }
 
-    private var engineStartUSSDCode: String?
-    private var engineStopUSSDCode: String?
+    @AppStorage(Command.lock.rawValue) var lockCommand: String = ""
+    @AppStorage(Command.unlock.rawValue) var unlockCommand: String = ""
+    @AppStorage(Command.engineStart.rawValue) var engineStartCommand: String = ""
+    @AppStorage(Command.engineStop.rawValue) var engineStopCommand: String = ""
 
+
+    @AppStorage(Settings.gatePhoneNumber) var gatePhoneNumber: String = ""
+//        didSet {
+//            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
+//        }
+//    }
+
+    var needPhoneNumbers: Bool {
+        carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
+    }
+
+    var canLock: Bool {
+        !lockCommand.isEmpty
+    }
+
+    var canUnlock: Bool {
+        !unlockCommand.isEmpty
+    }
+
+    var canStartEngine: Bool {
+        !engineStartCommand.isEmpty
+    }
+
+    var canStopEngine: Bool {
+        !engineStopCommand.isEmpty
+    }
+
+    var canOpenGate: Bool {
+        !gatePhoneNumber.isEmpty
+    }
+
+//    lazy var canOpenGate = Binding(
+//        get: { return !self.gatePhoneNumber.isEmpty },
+//        set: {_,_ in }
+//    )
+//
 
     //    var callObserver = CXCallObserver()
     //    let callController = CXCallController()
@@ -61,13 +113,13 @@ struct CarAlarmController: RemoteController {
 
         switch command {
             case .lock:
-                callTo(number: carAlarmPhoneNumber, ussdCode: lockUSSDCode)
+                callTo(number: carAlarmPhoneNumber, ussdCode: lockCommand)
             case .unlock:
-                callTo(number: carAlarmPhoneNumber, ussdCode: unlockUSSDCode)
+                callTo(number: carAlarmPhoneNumber, ussdCode: unlockCommand)
             case .engineStart:
-                callTo(number: carAlarmPhoneNumber, ussdCode: engineStartUSSDCode)
+                callTo(number: carAlarmPhoneNumber, ussdCode: engineStartCommand)
             case .engineStop:
-                callTo(number: carAlarmPhoneNumber, ussdCode: engineStopUSSDCode)
+                callTo(number: carAlarmPhoneNumber, ussdCode: engineStopCommand)
             case .openGate:
                 callTo(number: gatePhoneNumber)
         }
