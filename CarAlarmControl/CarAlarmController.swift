@@ -42,7 +42,11 @@ final class CarAlarmController: RemoteController, ObservableObject {
 
     @AppStorage(Settings.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
 //        didSet {
-//            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
+////            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
+//            print("did")
+//        }
+//        willSet {
+//            print("will")
 //        }
 //    }
 

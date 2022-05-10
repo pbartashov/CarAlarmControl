@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+import iPhoneNumberField
+
+
+
+import Contacts
 
 enum Settings {
     static let carAlarmPhoneNumber = "carAlarmPhoneNumber"
@@ -24,7 +29,16 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Car alarm") {
-                TextField("Car alarm phone number", text: controller.$carAlarmPhoneNumber)
+                iPhoneNumberField("Car alarm phone number", text: controller.$carAlarmPhoneNumber)
+                    .prefixHidden(false)
+//                    .autofillPrefix(true)
+//                    .flagHidden(false)
+//                    .flagSelectable(true)
+//                    .onChange(of: controller.carAlarmPhoneNumber) { newValue in
+//                        print(newValue)
+//                        controller.carAlarmPhoneNumber = "2"
+//
+//                    }
             }
 
             Section("Commands") {
@@ -74,11 +88,26 @@ struct SettingsView: View {
                 TextField("Gate phone number", text: controller.$gatePhoneNumber)
             }
 
+            VStack {
 
+                Text("Selected: \(contact?.givenName ?? "")")
+                Text("Selected: \(contact?.phoneNumbers.first?.value.stringValue ?? "")")
+                ContactPickerButton(contact: $contact) {
+                    Label("Select Contact", systemImage: "person.crop.circle.fill")
+                        .fixedSize()
+                }
+                .fixedSize()
+                .buttonStyle(.borderedProminent)
+
+            }
 
         }
         .keyboardType(.phonePad)
+
+
     }
+
+    @State var contact: CNContact?
 }
 
 struct SettingsView_Previews: PreviewProvider {

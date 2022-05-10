@@ -12,6 +12,13 @@ struct ContentView: View {
 //    @StateObject
     @StateObject var controller = CarAlarmController()
     @State var tabSelection = 0
+//        didSet {
+//            if tabSelection != 1 {
+//                showSpacer = true
+//            }
+//        }
+//    }
+//    @State var showSpacer = true
     
 //    init() {
 //        UITabBar.appearance().backgroundColor = UIColor.blue
@@ -21,14 +28,21 @@ struct ContentView: View {
 
         TabView(selection : $tabSelection) {
                 ControlView()
-                    .edgesIgnoringSafeArea(.all)
+//                    .edgesIgnoringSafeArea(.all)
                     .tag(0)
 
 
             VStack {
-                HStack(alignment: .center, spacing: 8) {
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
                     
                     Image(systemName: "chevron.backward")
+                        .foregroundColor(.blue)
+                        .font(.headline)
+                    
+
+//                    if showSpacer {
+//                        Spacer()
+//                    }
 
                     Button {
                         withAnimation {
@@ -37,11 +51,17 @@ struct ContentView: View {
 
                     } label: {
                         Text("Back")
-                            .multilineTextAlignment(.leading)
+//                            .multilineTextAlignment(.leading)
                     }
 
                     Spacer()
                 }
+//                .task {
+//                    withAnimation {
+//                        showSpacer = false
+//                    }
+//                }
+                .padding([.horizontal, .top])
 
                 SettingsView()
 
@@ -65,7 +85,7 @@ struct ContentView: View {
         //        .background(LinearGradient(Color.darkStart, Color.darkEnd))
 
 
-            .edgesIgnoringSafeArea(.all)
+//            .edgesIgnoringSafeArea(.all)
             .environmentObject(controller)
     }
 }
