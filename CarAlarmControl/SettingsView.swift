@@ -19,7 +19,19 @@ enum Settings {
 
 struct SettingsView: View {
     @EnvironmentObject var controller: CarAlarmController
-//    @AppStorage(Settings.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
+
+
+//    @State var showPicker = false
+
+    @State private var myDouble: Double = 0.673
+    @State private var numberFormatter: NumberFormatter = {
+        var nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        return nf
+    }()
+    @State private var nameComponents = PersonNameComponents()
+
+    //    @AppStorage(Settings.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
 //    @AppStorage(Command.lock.rawValue) var lockCommand: String = ""
 //    @AppStorage(Command.unlock.rawValue) var unlockCommand: String = ""
 //    @AppStorage(Command.engineStart.rawValue) var engineStartCommand: String = ""
@@ -39,6 +51,65 @@ struct SettingsView: View {
 //                        controller.carAlarmPhoneNumber = "2"
 //
 //                    }
+
+               ContactsPicker(title: "Select from Contacts")
+
+
+
+//                ContactsPicker1(onContactPropertySelect: { contactProperty in
+//                    if let phoneNumber = contactProperty.value as? CNPhoneNumber {
+//                        controller.carAlarmPhoneNumber = phoneNumber.stringValue
+//                    }
+//                }, label: {
+//                    Text("Select from Contacts")
+//                })
+
+                ContactsPicker1 { contactProperty in
+                    if let phoneNumber = contactProperty.value as? CNPhoneNumber {
+                        controller.carAlarmPhoneNumber = phoneNumber.stringValue
+                    }
+                } label: {
+                    Text("Select from Contacts")
+                }
+
+
+                Button {
+                    controller.carAlarmPhoneNumber = "1"
+                } label: {
+                    Text("1")
+                }
+
+                Text(controller.carAlarmPhoneNumber)
+
+                TextField("1", text: controller.$carAlarmPhoneNumber)
+
+
+
+
+                         VStack {
+                             TextField(
+                                 value: $myDouble,
+                                 formatter: numberFormatter
+                             ) {
+                                 Text("Double")
+                             }
+                             Text(myDouble, format: .number)
+                             Text(myDouble, format: .number.precision(.significantDigits(5)))
+                             Text(myDouble, format: .number.notation(.scientific))
+                         }
+
+                TextField(
+                    "Proper name",
+                    value: $nameComponents,
+                    format: .name(style: .medium)
+                )
+                .onSubmit {
+//                    validate(components: nameComponents)
+                }
+                .disableAutocorrection(true)
+                .border(.secondary)
+                Text(nameComponents.debugDescription)
+
             }
 
             Section("Commands") {

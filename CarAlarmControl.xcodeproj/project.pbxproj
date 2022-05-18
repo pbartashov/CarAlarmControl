@@ -16,6 +16,11 @@
 		6E404D3E2823FE040050169A /* PickupContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D3D2823FE040050169A /* PickupContactsView.swift */; };
 		6E404D402823FF820050169A /* PickupContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D3F2823FF820050169A /* PickupContactsViewController.swift */; };
 		6E404D422824126D0050169A /* SwiftUIView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D412824126D0050169A /* SwiftUIView4.swift */; };
+		6E404D46282A63230050169A /* SwiftUIViewTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D45282A63230050169A /* SwiftUIViewTEST.swift */; };
+		6E404D48282A66EA0050169A /* ContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D47282A66EA0050169A /* ContactsPicker.swift */; };
+		6E404D4A282A70380050169A /* File5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D49282A70380050169A /* File5.swift */; };
+		6E404D4C282A705B0050169A /* File51.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D4B282A705B0050169A /* File51.swift */; };
+		6E404D4E282A80E40050169A /* ContactsPicker1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E404D4D282A80E40050169A /* ContactsPicker1.swift */; };
 		6EA813F22810396B0006558B /* CarAlarmControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA813F12810396B0006558B /* CarAlarmControlApp.swift */; };
 		6EA813F42810396B0006558B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA813F32810396B0006558B /* ContentView.swift */; };
 		6EA813F62810396D0006558B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EA813F52810396D0006558B /* Assets.xcassets */; };
@@ -35,6 +40,11 @@
 		6E404D3D2823FE040050169A /* PickupContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupContactsView.swift; sourceTree = "<group>"; };
 		6E404D3F2823FF820050169A /* PickupContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupContactsViewController.swift; sourceTree = "<group>"; };
 		6E404D412824126D0050169A /* SwiftUIView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView4.swift; sourceTree = "<group>"; };
+		6E404D45282A63230050169A /* SwiftUIViewTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewTEST.swift; sourceTree = "<group>"; };
+		6E404D47282A66EA0050169A /* ContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPicker.swift; sourceTree = "<group>"; };
+		6E404D49282A70380050169A /* File5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File5.swift; sourceTree = "<group>"; };
+		6E404D4B282A705B0050169A /* File51.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File51.swift; sourceTree = "<group>"; };
+		6E404D4D282A80E40050169A /* ContactsPicker1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPicker1.swift; sourceTree = "<group>"; };
 		6EA813EE2810396B0006558B /* CarAlarmControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarAlarmControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA813F12810396B0006558B /* CarAlarmControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAlarmControlApp.swift; sourceTree = "<group>"; };
 		6EA813F32810396B0006558B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,7 +102,12 @@
 				6E404D3B2823F6190050169A /* File3.swift */,
 				6E404D3D2823FE040050169A /* PickupContactsView.swift */,
 				6E404D3F2823FF820050169A /* PickupContactsViewController.swift */,
+				6E404D47282A66EA0050169A /* ContactsPicker.swift */,
+				6E404D4D282A80E40050169A /* ContactsPicker1.swift */,
 				6E404D412824126D0050169A /* SwiftUIView4.swift */,
+				6E404D45282A63230050169A /* SwiftUIViewTEST.swift */,
+				6E404D49282A70380050169A /* File5.swift */,
+				6E404D4B282A705B0050169A /* File51.swift */,
 				6EA813F52810396D0006558B /* Assets.xcassets */,
 				6EA813F72810396D0006558B /* Preview Content */,
 			);
@@ -183,17 +198,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E404D4A282A70380050169A /* File5.swift in Sources */,
 				6EA813F42810396B0006558B /* ContentView.swift in Sources */,
 				6E404D3E2823FE040050169A /* PickupContactsView.swift in Sources */,
 				6E404D3328155D510050169A /* SettingsView.swift in Sources */,
 				6E404D3C2823F6190050169A /* File3.swift in Sources */,
+				6E404D4C282A705B0050169A /* File51.swift in Sources */,
 				6EA81404281041F50006558B /* CarAlarmController.swift in Sources */,
 				6EA814002810398D0006558B /* Extensions.swift in Sources */,
 				6E404D3A2823ED920050169A /* File2.swift in Sources */,
 				6E404D422824126D0050169A /* SwiftUIView4.swift in Sources */,
+				6E404D46282A63230050169A /* SwiftUIViewTEST.swift in Sources */,
 				6EA814062810E2030006558B /* ProviderDelegate.swift in Sources */,
+				6E404D4E282A80E40050169A /* ContactsPicker1.swift in Sources */,
 				6EA813F22810396B0006558B /* CarAlarmControlApp.swift in Sources */,
 				6E404D3128155D430050169A /* ControlView.swift in Sources */,
+				6E404D48282A66EA0050169A /* ContactsPicker.swift in Sources */,
 				6E404D382823D9170050169A /* File.swift in Sources */,
 				6EA81402281039C70006558B /* CircleButton.swift in Sources */,
 				6E404D402823FF820050169A /* PickupContactsViewController.swift in Sources */,
