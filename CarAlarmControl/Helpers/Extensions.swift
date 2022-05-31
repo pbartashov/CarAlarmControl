@@ -26,3 +26,15 @@ extension LinearGradient {
     }
 }
 
+//extension Character {
+//    var isSharpOrStar: Bool {
+//        self == "#" || self == "*"
+//    }
+//}
+
+//extension String {
+//    func filterWithPhoneNumberSymbols() -> String {
+//        self.filter { $0.isNumber || $0 == "#" || $0 == "*" }
+//    }
+//}
+

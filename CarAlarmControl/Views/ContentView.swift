@@ -28,16 +28,16 @@ struct ContentView: View {
 
         TabView(selection : $tabSelection) {
                 ControlView()
-//                    .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all)
                     .tag(0)
 
 
             VStack {
-                HStack(alignment: .firstTextBaseline, spacing: 0) {
-                    
+                HStack(alignment: .center, spacing: 4) {
+
                     Image(systemName: "chevron.backward")
                         .foregroundColor(.blue)
-                        .font(.headline)
+                        .font(.system(size: 23, weight: .medium))
                     
 
 //                    if showSpacer {
@@ -62,6 +62,11 @@ struct ContentView: View {
 //                    }
 //                }
                 .padding([.horizontal, .top])
+                
+                NavigationView {
+                    Text("SADASAS")
+                }
+
 
                 SettingsView()
 
@@ -85,7 +90,7 @@ struct ContentView: View {
         //        .background(LinearGradient(Color.darkStart, Color.darkEnd))
 
 
-//            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
             .environmentObject(controller)
     }
 }

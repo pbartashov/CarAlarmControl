@@ -8,12 +8,12 @@
 import SwiftUI
 import ContactsUI
 
-struct ContactsPicker1<Label>: View where Label : View {
+struct ContactsPicker<Label>: View where Label : View {
 //struct ContactsPicker1<Label: View>: View {
     let delegate: Delegate
     let label: () -> Label
 
-    init(onContactPropertySelect: ((_: CNContactProperty) -> Void)? = nil, label: @escaping () -> Label) {
+    init(label: @escaping () -> Label, onContactPropertySelect: ((_: CNContactProperty) -> Void)? = nil) {
         self.label = label
 
         self.delegate = Delegate()
@@ -22,16 +22,11 @@ struct ContactsPicker1<Label>: View where Label : View {
 
 
     var body: some View {
-
-//        Button<Label>(action: showContacts, label: Label)
-
-
         Button<Label> {
             showContacts()
         } label: {
             label()
         }
-
     }
 
     func showContacts() {
@@ -40,7 +35,6 @@ struct ContactsPicker1<Label>: View where Label : View {
         picker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
         picker.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0",
                                                          argumentArray: nil)
-
         UIApplication
             .shared
             .connectedScenes
@@ -59,8 +53,8 @@ struct ContactsPicker1<Label>: View where Label : View {
     }
 }
 
-struct ContactsPicker1_Previews: PreviewProvider {
+struct ContactsPicker_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsPicker1 { Text("Show Contacts") }
+        ContactsPicker { Text("Show Contacts") }
     }
 }

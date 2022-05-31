@@ -25,6 +25,12 @@ protocol RemoteController {
     func perfom(command: Command)
 }
 
+enum RemotePhoneNumber {
+    static let carAlarmPhoneNumber = "carAlarmPhoneNumber"
+    static let gatePhoneNumber = "gatePhoneNumber"
+}
+
+
 enum Command: String {
     case lock = "lock"
     case unlock = "unlock"
@@ -40,7 +46,7 @@ final class CarAlarmController: RemoteController, ObservableObject {
     @Environment(\.openURL) private var openURL
 
 
-    @AppStorage(Settings.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
+    @AppStorage(RemotePhoneNumber.carAlarmPhoneNumber) var carAlarmPhoneNumber: String = ""
 //        didSet {
 ////            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
 //            print("did")
@@ -56,7 +62,7 @@ final class CarAlarmController: RemoteController, ObservableObject {
     @AppStorage(Command.engineStop.rawValue) var engineStopCommand: String = ""
 
 
-    @AppStorage(Settings.gatePhoneNumber) var gatePhoneNumber: String = ""
+    @AppStorage(RemotePhoneNumber.gatePhoneNumber) var gatePhoneNumber: String = ""
 //        didSet {
 //            needsPhoneNumbers = carAlarmPhoneNumber.isEmpty && gatePhoneNumber.isEmpty
 //        }
