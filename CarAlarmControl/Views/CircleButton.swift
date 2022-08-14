@@ -10,9 +10,8 @@ import SwiftUI
 struct ButtonBackground<S: Shape>: View {
     var isHighlighted: Bool
     var shape: S
-
+    
     var body: some View {
-        //        ZStack {
         if isHighlighted {
             shape
                 .fill(LinearGradient(Color.deeperDarkStart, Color.deeperDarkEnd))
@@ -25,7 +24,6 @@ struct ButtonBackground<S: Shape>: View {
                 .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
                 .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
                 .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
-            //            }
         }
     }
 }
@@ -44,38 +42,10 @@ struct CapsuleButtonStyle: ButtonStyle {
     }
 }
 
-//struct CircleButtonStyle: ButtonStyle {
-//    func makeBody(configuration: Self.Configuration) -> some View {
-//        configuration.label
-//            .padding(30)
-//            .contentShape(Circle())
-//            .background(
-//                ButtonBackground(isHighlighted: configuration.isPressed, shape: Circle())
-//            )
-//            .transaction { transaction in
-//                transaction.animation = nil
-//            }
-//    }
-//}
-
-//struct RoundedRectangleButtonStyle: ButtonStyle {
-//    func makeBody(configuration: Self.Configuration) -> some View {
-//        configuration.label
-//            .padding(25)
-//            .contentShape(Capsule())
-//            .background(
-//                ButtonBackground(isHighlighted: configuration.isPressed, shape: Capsule())
-//            )
-//            .transaction { transaction in
-//                transaction.animation = nil
-//            }
-//    }
-//}
-
 struct CarAlarmButtonStyle<S: Shape>: ButtonStyle {
     var shape: S
     var padding: CGFloat
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(padding)
@@ -88,26 +58,3 @@ struct CarAlarmButtonStyle<S: Shape>: ButtonStyle {
             }
     }
 }
-
-
-//struct CircleButton: View {
-//    var body: some View {
-//        ZStack {
-////            LinearGradient(Color.darkStart, Color.darkEnd)
-//
-//            Button(action: {
-//                print("Button tapped")
-//            }) {
-//                Image(systemName: "heart.fill")
-//                    .foregroundColor(.white)
-//            }
-//            .buttonStyle(CircleButtonStyle())
-//        }
-//    }
-//}
-
-//struct CircleButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CircleButton()
-//    }
-//}

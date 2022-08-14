@@ -12,7 +12,7 @@ struct PhoneField: View {
     private var placeholder: String
     @State private var displayedText: String
     @Binding private var text: String
-
+    
     init(placeholder: String, text: Binding<String>) {
         self.formatter = PhoneNumberFormatter()
         self.placeholder = placeholder
@@ -20,24 +20,28 @@ struct PhoneField: View {
         self._displayedText = State(initialValue:
                                         formatter.formDisplayedText(from: text.wrappedValue))
     }
-
+    
     var body: some View {
         TextField(placeholder, text: $displayedText)
             .onChange(of: displayedText) { newValue in
-                displayedText = formatter.formDisplayedText(from: newValue)
-
-                let number = formatter.formPhoneNumber(from: displayedText)
-                if text != number {
-                    text = number
-                }
+                setTexts(with: newValue)
             }
             .onChange(of: text) { newValue in
-                let formatted = formatter.formDisplayedText(from: newValue)
-                if displayedText != formatted {
-                    displayedText = formatted
-                }
+                setTexts(with: newValue)
             }
             .keyboardType(.phonePad)
+    }
+
+    private func setTexts(with value: String) {
+        let formatted = formatter.formDisplayedText(from: value)
+        if displayedText != formatted {
+            displayedText = formatted
+        }
+
+        let number = formatter.formPhoneNumber(from: value)
+        if text != number {
+            text = number
+        }
     }
 }
 

@@ -10,11 +10,6 @@ import SwiftUI
 
 import Contacts
 
-//enum Settings {
-//    static let carAlarmPhoneNumber = "carAlarmPhoneNumber"
-//    static let gatePhoneNumber = "gatePhoneNumber"
-//}
-
 struct SettingsView: View {
     @EnvironmentObject var controller: CarAlarmController
 
@@ -26,7 +21,9 @@ struct SettingsView: View {
                     Text("Select from Contacts")
                 } onContactPropertySelect: { contactProperty in
                     if let phoneNumber = contactProperty.value as? CNPhoneNumber {
-                        controller.carAlarmPhoneNumber = phoneNumber.stringValue
+                        DispatchQueue.main.async {
+                            controller.carAlarmPhoneNumber = phoneNumber.stringValue/
+                        }
                     }
                 }
             }
@@ -52,7 +49,7 @@ struct SettingsView: View {
                     PhoneField(placeholder: "Engine stop command", text: controller.$engineStopCommand)
                 }
             }
-            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
+            .multilineTextAlignment(.trailing)
 
             Section("Gate") {
                 PhoneField(placeholder: "Gate phone number", text: $controller.gatePhoneNumber)

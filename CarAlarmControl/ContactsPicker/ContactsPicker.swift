@@ -9,17 +9,13 @@ import SwiftUI
 import ContactsUI
 
 struct ContactsPicker<Label>: View where Label : View {
-//struct ContactsPicker1<Label: View>: View {
-    let delegate: Delegate
-    let label: () -> Label
+    private let delegate: Delegate
+    private let label: () -> Label
 
     init(label: @escaping () -> Label, onContactPropertySelect: ((_: CNContactProperty) -> Void)? = nil) {
         self.label = label
-
-        self.delegate = Delegate()
-        self.delegate.onContactPropertySelect = onContactPropertySelect
+        self.delegate = Delegate(onContactPropertySelect: onContactPropertySelect)
     }
-
 
     var body: some View {
         Button<Label> {
@@ -29,7 +25,7 @@ struct ContactsPicker<Label>: View where Label : View {
         }
     }
 
-    func showContacts() {
+    private func showContacts() {
         let picker = CNContactPickerViewController()
         picker.delegate = delegate
         picker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
@@ -43,8 +39,11 @@ struct ContactsPicker<Label>: View where Label : View {
     }
 
     class Delegate: NSObject, CNContactPickerDelegate  {
-
         var onContactPropertySelect: ((_: CNContactProperty) -> Void)?
+
+        init(onContactPropertySelect: ((CNContactProperty) -> Void)? = nil) {
+            self.onContactPropertySelect = onContactPropertySelect
+        }
 
         func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
 

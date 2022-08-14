@@ -8,90 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @State private var lock = true
-//    @StateObject
     @StateObject var controller = CarAlarmController()
-    @State var tabSelection = 0
-//        didSet {
-//            if tabSelection != 1 {
-//                showSpacer = true
-//            }
-//        }
-//    }
-//    @State var showSpacer = true
-    
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor.blue
-//    }
+    @State private var tabSelection = 0
 
     var body: some View {
-
         TabView(selection : $tabSelection) {
-                ControlView()
-                    .edgesIgnoringSafeArea(.all)
-                    .tag(0)
-
-
+            ControlView()
+                .edgesIgnoringSafeArea(.all)
+                .tag(0)
             VStack {
                 HStack(alignment: .center, spacing: 4) {
-
                     Image(systemName: "chevron.backward")
                         .foregroundColor(.blue)
                         .font(.system(size: 23, weight: .medium))
-                    
-
-//                    if showSpacer {
-//                        Spacer()
-//                    }
 
                     Button {
                         withAnimation {
                             tabSelection -= 1
                         }
-
                     } label: {
                         Text("Back")
-//                            .multilineTextAlignment(.leading)
+                        //                            .multilineTextAlignment(.leading)
                     }
 
                     Spacer()
                 }
-//                .task {
-//                    withAnimation {
-//                        showSpacer = false
-//                    }
-//                }
                 .padding([.horizontal, .top])
-                
-                NavigationView {
-                    Text("SADASAS")
-                }
-
 
                 SettingsView()
-
             }
             .tag(1)
-
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .task {
-                if controller.needPhoneNumbers {
-                    withAnimation {
-                        tabSelection = 1
-                    }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .task {
+            if controller.needPhoneNumbers {
+                withAnimation {
+                    tabSelection = 1
                 }
             }
-
-
-        
-//        }
-        //        .foregroundColor(.purple)
-        //        .background(LinearGradient(Color.darkStart, Color.darkEnd))
-
-
-            .edgesIgnoringSafeArea(.all)
-            .environmentObject(controller)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .environmentObject(controller)
     }
 }
 

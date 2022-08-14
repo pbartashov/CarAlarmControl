@@ -48,9 +48,7 @@ struct ControlView: View {
                         }
                     }
                 }
-//                .padding()
 
-                //                VStack {
                 Spacer()
 
                 if controller.canStartEngine {
@@ -86,7 +84,6 @@ struct ControlView: View {
                         controller.perfom(command: .openGate)
                     }) {
                         Text("Open gate")
-//                                                .padding(15)
                             .foregroundColor(.lightStart)
                             .font(.system(size: 30))
                     }
